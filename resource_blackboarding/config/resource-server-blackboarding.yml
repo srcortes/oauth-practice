@@ -1,0 +1,26 @@
+---
+server:
+  port: 8084
+
+data:
+  clientId: client
+  secret: secret
+  passwd: password
+  refresh: refresh_token
+  allowed: read
+
+spring:
+  sql:
+    init-mode: always
+    jpa:
+      database: MYSQL
+      show-sql: true
+      hibernate:
+        ddl-auto: create-drop
+    datasource:
+      driverClassName: com.mysql.cj.jdbc.Driver
+      platform: mysql
+      url: jdbc:mysql://localhost:33060/spring
+      username: root
+      password: secret
+      initialization-mode: always

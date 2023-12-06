@@ -13,4 +13,3 @@ CREATE TABLE IF NOT EXISTS `oauth_refresh_token` (
     `token` blob,
     `authentication` blob,
      PRIMARY KEY (`token_id`));
-

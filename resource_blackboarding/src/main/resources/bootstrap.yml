@@ -2,8 +2,6 @@
 spring:
   application:
     name: resource-server-blackboarding
-  profiles:
-    active: dev
   config:
     name: ${spring.application.name}
   cloud:

@@ -24,7 +24,8 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.inMemory().withClient("client").secret("secret").authorizedGrantTypes("client_credentials")
-                .scopes("info");
+        clients.inMemory().withClient("client1").secret("secret1").authorizedGrantTypes("client_credentials",
+                        "refresh_token")
+                .scopes("read");
     }
 }

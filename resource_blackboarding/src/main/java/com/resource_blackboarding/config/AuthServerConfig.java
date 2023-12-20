@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.configurers.oauth2.client.OAuth2LoginConfigurer;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -20,6 +21,22 @@ import javax.sql.DataSource;
 @EnableAuthorizationServer
 public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 
+    @Value("${data.clientId}")
+    private String client;
+
+    @Value("${data.secret}")
+    private String secret;
+
+    @Value("${data.allowed}")
+    private String allowed;
+
+    @Value("${data.passwd}")
+    private String pwd;
+
+    @Value("${data.refresh}")
+    private String refresh;
+
+
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -28,13 +45,13 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.inMemory().withClient("${data.clientId}").secret("${data.secret}")
-                .authorizedGrantTypes("${data.passwd}", "${data.refresh}").scopes("${data.allowed}");
+        clients.inMemory().withClient(client).secret(secret).authorizedGrantTypes(pwd, refresh).scopes(allowed);
     }
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.authenticationManager(authenticationManager).tokenStore(this.tokenStore());
+        endpoints.authenticationManager(authenticationManager)
+                .tokenStore(tokenStore());
     }
 
     @Bean

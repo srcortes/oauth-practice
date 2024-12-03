@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+
 public interface Operation {
   @GetMapping("/products")
   ResponseEntity<List<ProductsDto>> getProducts();

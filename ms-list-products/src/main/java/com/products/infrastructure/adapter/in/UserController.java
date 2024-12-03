@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
-public class UserController implements Operation{
+public class UserController implements Operation {
   private final UserUseCase userUseCase;
 
   @Override

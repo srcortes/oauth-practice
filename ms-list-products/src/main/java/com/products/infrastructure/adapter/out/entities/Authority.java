@@ -7,9 +7,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import lombok.Data;
+import lombok.Getter;
 
 @Entity
-@Data
+@Getter
 public class Authority {
 
   @Id

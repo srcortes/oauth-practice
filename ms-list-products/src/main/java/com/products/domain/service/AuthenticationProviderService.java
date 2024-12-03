@@ -30,7 +30,6 @@ public class AuthenticationProviderService implements AuthenticationProvider {
     String userName = authentication.getName();
     String password = authentication.getCredentials().toString();
     CustomUserDetails user = jpaUserDetailService.loadUserByUsername(userName);
-    System.out.println(user);
     return checkAlgorithm(user, password);
   }
 

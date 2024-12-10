@@ -33,10 +33,15 @@ public class ProjectConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    http.httpBasic();
-    /*http.authorizeRequests()
-        .anyRequest().hasAuthority("READ"); 'it's a way'*/
-    http.authorizeRequests().anyRequest().hasAuthority("READ");
+    http.csrf().disable()
+        .authorizeRequests()
+        //.mvcMatchers("/updateProduct/**").hasAuthority("ADMIN")
+        .mvcMatchers("/updateProduct/**").hasRole("ADMIN")
+        .mvcMatchers(HttpMethod.GET, "/products/{id:[0-9]+}").hasRole("MANAGER")
+        //.anyRequest().hasRole("MANAGER") //this is a way to allow access
+        .and()
+        .httpBasic();
+
 
   }
 }

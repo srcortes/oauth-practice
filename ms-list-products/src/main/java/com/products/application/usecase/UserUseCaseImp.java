@@ -2,7 +2,6 @@ package com.products.application.usecase;
 
 import com.products.application.dto.ProductsDto;
 import com.products.application.ports.UserDataProvider;
-import com.products.infrastructure.adapter.out.entities.Product;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -37,10 +36,16 @@ public class UserUseCaseImp implements UserUseCase{
 
   @Override
   public void updateProduct(int id, ProductsDto products) {
-    Product product = dataProvider.getProductById(id)
-        .orElseThrow(() -> new RuntimeException("Product not found"));
-    product.setName(products.getName());
-    product.setPrice(products.getPrice());
-    dataProvider.updateProduct(id, product);
+    dataProvider.getProductById(id)
+        .map(product1 -> {
+          product1.setName(products.getName());
+          product1.setPrice(products.getPrice());
+          return product1;
+        }).ifPresentOrElse(product ->
+          dataProvider.updateProduct(id, product),
+              () ->{
+              throw new RuntimeException("Product not found");
+           }
+        );
   }
 }

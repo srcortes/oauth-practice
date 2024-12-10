@@ -27,7 +27,6 @@ public class JpaUserDetailService implements UserDetailsService {
         .orElseThrow(()->  new UsernameNotFoundException("Error during authentication"));
   }
   private Users convertToUsers(User user) {
-    System.out.println(user);
     Users users = new Users();
     users.setId(user.getId());
     users.setUsername(user.getUsername());

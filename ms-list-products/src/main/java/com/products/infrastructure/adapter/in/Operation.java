@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
-public interface Operation {
+public interface  Operation {
   @GetMapping("/products")
   ResponseEntity<List<ProductsDto>> getProducts();
 

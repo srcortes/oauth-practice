@@ -28,6 +28,4 @@ public class UserController implements Operation {
     userUseCase.updateProduct(id, products);
     return ResponseEntity.accepted().build();
   }
-
-
 }

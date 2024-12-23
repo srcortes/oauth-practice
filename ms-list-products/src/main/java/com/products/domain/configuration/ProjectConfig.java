@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 @Configuration
 public class ProjectConfig extends WebSecurityConfigurerAdapter {
@@ -34,6 +35,8 @@ public class ProjectConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.csrf().disable()
+        .addFilterBefore(new RequestValidationFilter(), BasicAuthenticationFilter.class)//Adding filter before authentication
+        .addFilterAfter(new AuthenticationLoggingFilter(), BasicAuthenticationFilter.class)//Adding filter after authentication
         .authorizeRequests()
         //.mvcMatchers("/updateProduct/**").hasAuthority("ADMIN")
         .mvcMatchers("/updateProduct/**").hasRole("ADMIN")

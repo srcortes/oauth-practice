@@ -17,6 +17,9 @@ public class ProjectConfig extends WebSecurityConfigurerAdapter {
 
   @Autowired
   private AuthenticationProviderService authenticationProviderService;
+
+  @Autowired
+  private RequestValidationFilter filter;
   @Bean
   public BCryptPasswordEncoder bCryptPasswordEncoder(){
     return new BCryptPasswordEncoder();
@@ -35,8 +38,9 @@ public class ProjectConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.csrf().disable()
-        .addFilterBefore(new RequestValidationFilter(), BasicAuthenticationFilter.class)//Adding filter before authentication
+        .addFilterBefore(filter, BasicAuthenticationFilter.class)//Adding filter before authentication
         .addFilterAfter(new AuthenticationLoggingFilter(), BasicAuthenticationFilter.class)//Adding filter after authentication
+        .addFilterAt(filter, BasicAuthenticationFilter.class)//Adding filter at authentication
         .authorizeRequests()
         //.mvcMatchers("/updateProduct/**").hasAuthority("ADMIN")
         .mvcMatchers("/updateProduct/**").hasRole("ADMIN")

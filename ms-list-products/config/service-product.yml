@@ -1,6 +1,9 @@
 server:
   port: 8005 #Puerto por defecto para temas de apigateway
 
+authorization:
+  key: ${spring.authorization.key}
+
 spring:
   sql:
     init-mode: always

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class UserUseCaseImp implements UserUseCase{
+public class UserUseCaseImp implements UserUseCase {
   private final UserDataProvider dataProvider;
 
   @Override

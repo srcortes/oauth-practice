@@ -1,4 +1,4 @@
-package com.products.infrastructure.adapter.out.entities;
+package com.products.infrastructure.repositories.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,5 +20,5 @@ public class Authority {
 
   @JoinColumn(name="user")
   @ManyToOne
-  private User user;
+  private UserEntity user;
 }

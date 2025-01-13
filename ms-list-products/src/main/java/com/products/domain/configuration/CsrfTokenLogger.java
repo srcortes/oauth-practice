@@ -8,20 +8,19 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.security.web.csrf.CsrfToken;
 
+public class CsrfTokenLogger implements Filter {
+  private final Logger logger = Logger.getLogger(CsrfTokenLogger.class.getName());
 
-public class AuthenticationLoggingFilter implements Filter {
-
-  private final Logger logger = Logger.getLogger(AuthenticationLoggingFilter.class
-      .getName());
 
   @Override
   public void doFilter(ServletRequest request, ServletResponse response,
       FilterChain filterChain) throws IOException, ServletException {
-    var httpRequest = (HttpServletRequest) request;
-    var requestId = httpRequest.getHeader("Request-Id");
+    Object o = request.getAttribute("_csrf");
+    CsrfToken csrfToken = (CsrfToken) o;
 
-    logger.info("Request ID: " + requestId);
+    logger.info("CSRF Token: " + csrfToken.getToken());
     filterChain.doFilter(request, response);
 
   }

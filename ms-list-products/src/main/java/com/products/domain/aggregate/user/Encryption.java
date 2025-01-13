@@ -1,4 +1,4 @@
-package com.products.application.dto;
+package com.products.domain.aggregate.user;
 
 public enum Encryption {
   BCRYPT, SCRYPT

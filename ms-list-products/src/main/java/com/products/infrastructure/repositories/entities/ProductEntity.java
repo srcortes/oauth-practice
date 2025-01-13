@@ -1,4 +1,4 @@
-package com.products.infrastructure.adapter.out.entities;
+package com.products.infrastructure.repositories.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -8,9 +8,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import lombok.Data;
 
-@Entity
+@Entity(name = "product")
 @Data
-public class Product {
+public class ProductEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

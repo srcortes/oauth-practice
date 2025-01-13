@@ -1,4 +1,4 @@
-package com.products.application.dto;
+package com.products.domain.aggregate.user;
 
 import lombok.Data;
 
@@ -8,6 +8,6 @@ public class Authorities {
 
   private String name;
 
-  private Users user;
+  private User user;
 
 }

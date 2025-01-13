@@ -10,8 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class RequestValidationFilter implements Filter {
 
   @Value("${authorization.key}")
@@ -25,7 +26,7 @@ public class RequestValidationFilter implements Filter {
 
 
     if (authorization == null || authorization.isBlank() || !authorization.equals(authorizationKey)) {
-      httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+      httpResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
       return;
     }
 

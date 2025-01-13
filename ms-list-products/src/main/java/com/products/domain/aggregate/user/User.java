@@ -1,10 +1,10 @@
-package com.products.application.dto;
+package com.products.domain.aggregate.user;
 
 import java.util.List;
 import lombok.Data;
 
 @Data
-public class Users {
+public class User {
 
   private Integer Id;
 

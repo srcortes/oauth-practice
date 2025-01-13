@@ -1,6 +1,6 @@
-package com.products.infrastructure.adapter.in;
+package com.products.presentation;
 
-import com.products.application.dto.ProductsDto;
+import com.products.presentation.dto.ProductDto;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 public interface  Operation {
   @GetMapping("/products")
-  ResponseEntity<List<ProductsDto>> getProducts();
+  ResponseEntity<List<ProductDto>> getProducts();
 
   @GetMapping("/products/{id}")
-  ResponseEntity<ProductsDto> getProductById(@PathVariable int id);
+  ResponseEntity<ProductDto> getProductById(@PathVariable int id);
 
   @PutMapping("/updateProduct/{id}")
-  ResponseEntity<Void> updateProduct(@PathVariable int id, @RequestBody ProductsDto products);
+  ResponseEntity<Void> updateProduct(@PathVariable int id, @RequestBody ProductDto products);
 
 }

@@ -1,8 +1,7 @@
 package com.products.domain.service;
 
-import com.products.domain.entities.CustomUserDetails;
+import com.products.domain.CustomUserDetails;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -17,13 +16,11 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class AuthenticationProviderService implements AuthenticationProvider {
 
+  private final JpaUserDetailService jpaUserDetailService;
 
-  private JpaUserDetailService jpaUserDetailService;
+  private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-  private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-
-  private SCryptPasswordEncoder sCryptPasswordEncoder;
+  private final SCryptPasswordEncoder sCryptPasswordEncoder;
 
   @Override
   public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -47,8 +44,8 @@ public class AuthenticationProviderService implements AuthenticationProvider {
       case SCRYPT -> {
         return checkPassword(user, password, sCryptPasswordEncoder);
       }
+      default -> throw new BadCredentialsException("Something go wrong....");
     }
-    throw new BadCredentialsException("Something go wrong....");
   }
 
   private Authentication checkPassword(CustomUserDetails user, String rawPassowrd,

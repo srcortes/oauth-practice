@@ -1,6 +1,6 @@
-package com.products.domain.entities;
+package com.products.domain;
 
-import com.products.application.dto.Users;
+import com.products.domain.aggregate.user.User;
 import java.util.Collection;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
@@ -10,9 +10,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 @AllArgsConstructor
 public class CustomUserDetails implements UserDetails {
 
-  private final Users users;
+  private final User users;
 
-  public final Users getUsers(){
+  public final User getUsers(){
     return  users;
   }
 

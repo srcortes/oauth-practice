@@ -1,10 +1,10 @@
-package com.products.application.dto;
+package com.products.presentation.dto;
 
-import com.products.application.dto.Currencies;
+import com.products.domain.aggregate.user.Currencies;
 import lombok.Data;
 
 @Data
-public class ProductsDto {
+public class ProductDto {
   private Integer id;
   private String name;
   private double price;

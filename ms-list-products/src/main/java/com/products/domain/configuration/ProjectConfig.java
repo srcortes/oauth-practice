@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.security.web.csrf.CsrfFilter;
 
 @Configuration
 public class ProjectConfig extends WebSecurityConfigurerAdapter {
@@ -20,6 +21,7 @@ public class ProjectConfig extends WebSecurityConfigurerAdapter {
 
   @Autowired
   private RequestValidationFilter filter;
+
   @Bean
   public BCryptPasswordEncoder bCryptPasswordEncoder(){
     return new BCryptPasswordEncoder();
@@ -31,23 +33,29 @@ public class ProjectConfig extends WebSecurityConfigurerAdapter {
   }
 
   @Override
-  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-   auth.authenticationProvider(authenticationProviderService);
+  protected void configure(AuthenticationManagerBuilder auth) {
+    if (authenticationProviderService != null) {
+      auth.authenticationProvider(authenticationProviderService);
+    } else {
+      throw new IllegalStateException("AuthenticationProviderService is null");
+    }
   }
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    http.csrf().disable()
-        .addFilterBefore(filter, BasicAuthenticationFilter.class)//Adding filter before authentication
-        .addFilterAfter(new AuthenticationLoggingFilter(), BasicAuthenticationFilter.class)//Adding filter after authentication
+    http.httpBasic();
+    http
+        .addFilterBefore(new AuthenticationLoggingFilter(), BasicAuthenticationFilter.class)//Adding filter after authentication
+        .addFilterAfter(new CsrfTokenLogger(), CsrfFilter.class)
         .addFilterAt(filter, BasicAuthenticationFilter.class)//Adding filter at authentication
         .authorizeRequests()
         //.mvcMatchers("/updateProduct/**").hasAuthority("ADMIN")
         .mvcMatchers("/updateProduct/**").hasRole("ADMIN")
-        .mvcMatchers(HttpMethod.GET, "/products/{id:[0-9]+}").hasRole("MANAGER")
+        .mvcMatchers(HttpMethod.GET, "/products").hasRole("MANAGER");
         //.anyRequest().hasRole("MANAGER") //this is a way to allow access
-        .and()
-        .httpBasic();
+    http.csrf(c-> c.ignoringAntMatchers("/updateProduct/**"));//Here we are ignoring csrf for this endpoint
+
+
 
 
   }

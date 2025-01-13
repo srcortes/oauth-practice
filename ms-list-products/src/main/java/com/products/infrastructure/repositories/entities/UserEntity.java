@@ -1,4 +1,4 @@
-package com.products.infrastructure.adapter.out.entities;
+package com.products.infrastructure.repositories.entities;
 
 import java.util.List;
 import javax.persistence.Entity;
@@ -9,13 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import lombok.Data;
 import lombok.Getter;
 
 
-@Entity
+@Entity(name = "user")
 @Getter
-public class User {
+public class UserEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

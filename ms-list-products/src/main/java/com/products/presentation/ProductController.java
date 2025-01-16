@@ -1,6 +1,7 @@
 package com.products.presentation;
 
-import com.products.presentation.dto.ProductDto;
+
+import com.data.domain.products.ProductDto;
 import com.products.application.queries.ProductUseCase;
 import java.util.List;
 import lombok.AllArgsConstructor;

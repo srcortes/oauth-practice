@@ -51,7 +51,8 @@ public class ProjectConfig extends WebSecurityConfigurerAdapter {
         .authorizeRequests()
         //.mvcMatchers("/updateProduct/**").hasAuthority("ADMIN")
         .mvcMatchers("/updateProduct/**").hasRole("ADMIN")
-        .mvcMatchers(HttpMethod.GET, "/products").hasRole("MANAGER");
+        .mvcMatchers(HttpMethod.GET, "/products").hasRole("MANAGER")
+         .mvcMatchers(HttpMethod.GET, "/products/**").hasRole("ADMIN");
         //.anyRequest().hasRole("MANAGER") //this is a way to allow access
     http.csrf(c-> c.ignoringAntMatchers("/updateProduct/**"));//Here we are ignoring csrf for this endpoint
 

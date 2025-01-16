@@ -1,6 +1,6 @@
 package com.products.presentation;
 
-import com.products.presentation.dto.ProductDto;
+import com.data.domain.products.ProductDto;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

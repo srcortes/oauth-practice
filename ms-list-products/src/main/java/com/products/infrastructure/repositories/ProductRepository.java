@@ -1,6 +1,8 @@
 package com.products.infrastructure.repositories;
 
-import com.products.infrastructure.repositories.entities.ProductEntity;
+
+
+import com.data.entities.products.ProductEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

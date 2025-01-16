@@ -7,10 +7,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 
-@Service
+
+@Component
 @AllArgsConstructor
 public class JpaUserDetailService implements UserDetailsService {
 

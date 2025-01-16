@@ -1,26 +1,36 @@
 package com.products.infrastructure.adapter;
 
 
+import com.data.domain.products.ProductDto;
+import com.data.entities.token.TokenEntity;
+import com.data.entities.users.Authority;
+import com.data.entities.users.EncryptionAlgorithm;
 import com.products.domain.aggregate.user.Authorities;
 import com.products.domain.aggregate.user.Encryption;
-import com.products.infrastructure.repositories.entities.Authority;
-import com.products.infrastructure.repositories.entities.EncryptionAlgorithm;
-import com.products.presentation.dto.ProductDto;
+import com.products.infrastructure.repositories.TokenRepository;
 import com.products.domain.aggregate.user.User;
 import com.products.application.ports.UserDataProvider;
 import com.products.infrastructure.repositories.ProductRepository;
 import com.products.infrastructure.repositories.UserRepository;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.security.web.csrf.CsrfToken;
+import org.springframework.security.web.csrf.CsrfTokenRepository;
+import org.springframework.security.web.csrf.DefaultCsrfToken;
 import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor
-public class DataProvider implements UserDataProvider {
+public class DataProvider implements UserDataProvider, CsrfTokenRepository {
 
   private final UserRepository userRepository;
   private final ProductRepository productRepository;
+  private final TokenRepository tokenRepository;
   @Override
   public User findUserByUserName(String u) {
     return userRepository.findUserByUsername(u)
@@ -71,6 +81,31 @@ public class DataProvider implements UserDataProvider {
             }
         );
   }
+  @Override
+  public CsrfToken generateToken(HttpServletRequest request) {
+    String uuid = UUID.randomUUID().toString();
+    return new DefaultCsrfToken("X-CSRF-TOKEN", "_csrf", uuid);
+  }
+
+  @Override
+  public void saveToken(CsrfToken token, HttpServletRequest request, HttpServletResponse response) {
+    String identifier = request.getHeader("X-IDENTIFIER");
+    Optional<TokenEntity> existingToken = tokenRepository.findTokenByIdentifier(identifier);
+    if(existingToken.isPresent()){
+      TokenEntity tokenEntity = existingToken.get();
+
+
+    }else{
+
+    }
+
+
+  }
+
+  @Override
+  public CsrfToken loadToken(HttpServletRequest request) {
+    return null;
+  }
 
   private List<Authorities> getAuthorities(List<Authority> authorities) {
     return authorities.stream()
@@ -86,4 +121,6 @@ public class DataProvider implements UserDataProvider {
   private Encryption getEncryption(EncryptionAlgorithm encryptionAlgorithm) {
     return Encryption.valueOf(encryptionAlgorithm.toString());
   }
+
+
 }

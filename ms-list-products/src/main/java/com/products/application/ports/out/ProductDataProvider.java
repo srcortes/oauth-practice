@@ -1,12 +1,10 @@
-package com.products.application.ports;
+package com.products.application.ports.out;
 
 
 import com.data.domain.products.ProductDto;
-import com.products.domain.aggregate.user.User;
 import java.util.List;
 
-public interface UserDataProvider {
-  User findUserByUserName(String u);
+public interface ProductDataProvider {
   List<ProductDto> findAllProducts();
   ProductDto getProductById(int id);
   void updateProduct(int id, ProductDto products);

@@ -1,8 +1,9 @@
 package com.products.domain.service;
 
 
-import com.products.application.ports.UserDataProvider;
+import com.products.application.ports.out.ProductDataProvider;
 import com.products.domain.CustomUserDetails;
+import com.products.domain.ports.UserDataProvider;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

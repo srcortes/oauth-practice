@@ -2,7 +2,7 @@ package com.products.presentation;
 
 
 import com.data.domain.products.ProductDto;
-import com.products.application.queries.ProductUseCase;
+import com.products.application.ports.in.ProductUseCase;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

@@ -1,8 +1,10 @@
 package com.products.domain.ports;
 
-import com.products.domain.aggregate.user.User;
+
+import com.products.domain.aggregate.User;
+import java.util.Optional;
 
 public interface UserDataProvider {
-  User findUserByUserName(String u);
+  Optional<User> findUserByUserName(String u);
 
 }

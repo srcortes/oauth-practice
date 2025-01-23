@@ -1,10 +1,11 @@
 package com.products.domain.ports;
 
-import com.data.entities.token.TokenEntity;
+
+import com.products.domain.aggregate.Token;
 import java.util.Optional;
 
 public interface TokenDataProvider {
-  Optional<TokenEntity> getToken(String identifier);
+  Optional<Token> getToken(String identifier);
 
-  void saveToken(TokenEntity tokenEntity);
+  void saveToken(Token token);
 }

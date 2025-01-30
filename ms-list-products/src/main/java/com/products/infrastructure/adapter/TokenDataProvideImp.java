@@ -2,8 +2,9 @@ package com.products.infrastructure.adapter;
 
 
 
-import com.products.domain.aggregate.Token;
+
 import com.products.domain.ports.TokenDataProvider;
+import com.products.infrastructure.entities.Token;
 import com.products.infrastructure.repositories.TokenRepository;
 
 import java.util.Optional;

@@ -1,8 +1,9 @@
 package com.products.infrastructure.adapter;
 
 
-import com.products.domain.aggregate.User;
+
 import com.products.domain.ports.UserDataProvider;
+import com.products.infrastructure.entities.User;
 import com.products.infrastructure.repositories.UserRepository;
 import java.util.Optional;
 import lombok.AllArgsConstructor;

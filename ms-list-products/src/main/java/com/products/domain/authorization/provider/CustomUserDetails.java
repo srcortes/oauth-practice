@@ -1,7 +1,8 @@
 package com.products.domain.authorization.provider;
 
 
-import com.products.domain.aggregate.User;
+
+import com.products.infrastructure.entities.User;
 import java.util.Collection;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;

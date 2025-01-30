@@ -1,8 +1,11 @@
 package com.products.application.mappers;
 
+import com.products.application.ports.ProductListener;
 import com.products.domain.aggregate.Producto;
 
+import com.products.infrastructure.entities.ProductoEntity;
 import com.products.lib.response.ProductResponse;
+import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -14,4 +17,9 @@ public interface ProductRootMapper {
   @Mapping(source = "price", target = "price")
   @Mapping(source = "currency", target = "currency")
   ProductResponse toProductResponse(Producto producto);
+
+  List<ProductResponse> toListProductResponse(List<Producto> productos);
+  List<Producto> toListProductAggregate(List<ProductoEntity> productos);
+
+
 }

@@ -1,7 +1,8 @@
 package com.products.domain.ports;
 
 
-import com.products.domain.aggregate.User;
+
+import com.products.infrastructure.entities.User;
 import java.util.Optional;
 
 public interface UserDataProvider {

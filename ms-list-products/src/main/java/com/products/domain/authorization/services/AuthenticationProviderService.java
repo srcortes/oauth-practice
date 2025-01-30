@@ -1,5 +1,8 @@
 package com.products.domain.authorization.services;
 
+import static com.products.infrastructure.entities.Encryption.BCRYPT;
+import static com.products.infrastructure.entities.Encryption.SCRYPT;
+
 import com.products.domain.authorization.provider.CustomUserDetails;
 import com.products.domain.authorization.services.JpaUserDetailService;
 import lombok.AllArgsConstructor;
@@ -11,10 +14,11 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Service
 @AllArgsConstructor
+@Service
 public class AuthenticationProviderService implements AuthenticationProvider {
 
   private final JpaUserDetailService jpaUserDetailService;

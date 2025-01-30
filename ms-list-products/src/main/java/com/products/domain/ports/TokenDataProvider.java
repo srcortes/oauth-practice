@@ -1,7 +1,8 @@
 package com.products.domain.ports;
 
 
-import com.products.domain.aggregate.Token;
+
+import com.products.infrastructure.entities.Token;
 import java.util.Optional;
 
 public interface TokenDataProvider {

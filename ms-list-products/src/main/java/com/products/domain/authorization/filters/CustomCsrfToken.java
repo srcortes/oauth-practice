@@ -1,22 +1,18 @@
 package com.products.domain.authorization.filters;
 
 
-import com.products.domain.aggregate.Token;
+
 import com.products.domain.ports.TokenDataProvider;
+import com.products.infrastructure.entities.Token;
 import java.util.Optional;
 import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.DefaultCsrfToken;
 
-@AllArgsConstructor
-@NoArgsConstructor
 public class CustomCsrfToken implements CsrfTokenRepository {
-
   private TokenDataProvider tokenDataProvider;
 
   @Override

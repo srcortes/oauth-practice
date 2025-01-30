@@ -1,9 +1,7 @@
 package com.products.application.ports;
 
 
-
-
-import com.products.lib.dto.ProductDto;
+import com.products.lib.request.ProductRequest;
 import com.products.lib.response.ProductResponse;
 import java.util.List;
 
@@ -12,6 +10,6 @@ public interface ProductCasePort {
 
   ProductResponse getProductById(int id);
 
-  void updateProduct(int id, ProductDto products);
+  void updateProduct(int id, ProductRequest products);
 
 }

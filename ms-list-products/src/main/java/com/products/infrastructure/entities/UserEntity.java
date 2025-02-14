@@ -1,7 +1,7 @@
 package com.products.infrastructure.entities;
 
-import com.products.domain.aggregate.entities.Authorities;
-import com.products.domain.aggregate.values.Encryption;
+
+
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -16,7 +16,7 @@ import lombok.Data;
 
 @Entity(name = "user")
 @Data
-public class User {
+public class UserEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,9 +27,9 @@ public class User {
   private String password;
 
   @Enumerated(EnumType.STRING)
-  private Encryption algorithm;
+  private EncryptionEntity algorithm;
 
   @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-  private List<Authorities> authorities;
+  private List<AuthorityEntity> authorities;
 
 }

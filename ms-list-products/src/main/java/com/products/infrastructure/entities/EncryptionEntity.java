@@ -1,5 +1,5 @@
 package com.products.infrastructure.entities;
 
-public enum Encryption {
+public enum EncryptionEntity {
   BCRYPT, SCRYPT
 }

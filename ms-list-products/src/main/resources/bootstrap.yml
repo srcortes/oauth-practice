@@ -15,7 +15,7 @@ spring:
       scheme: http
       host: 127.0.0.1
       port: 8200
-      token: ${VAULT_TOKEN:#{T(java.nio.file.Files).readString(T(java.nio.file.Path).of('${VAULT_TOKEN_FILE}')).trim()}}
+      token: root-token
     config:
       uri: http://localhost:8888
   main:

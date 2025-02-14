@@ -2,10 +2,10 @@ package com.products.domain.ports;
 
 
 
-import com.products.infrastructure.entities.User;
+import com.products.infrastructure.entities.UserEntity;
 import java.util.Optional;
 
 public interface UserDataProvider {
-  Optional<User> findUserByUserName(String u);
+  Optional<UserEntity> findUserByUserName(String u);
 
 }

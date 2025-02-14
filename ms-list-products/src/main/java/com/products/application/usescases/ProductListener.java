@@ -1,4 +1,4 @@
-package com.products.application.ports;
+package com.products.application.usescases;
 
 
 import com.products.application.mappers.ProductRootMapper;

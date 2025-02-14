@@ -1,6 +1,6 @@
 package com.products.infrastructure.entities;
 
-import com.products.domain.aggregate.User;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Entity(name = "authority")
 @Data
-public class Authorities {
+public class AuthorityEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
@@ -20,6 +20,6 @@ public class Authorities {
 
   @JoinColumn(name="user")
   @ManyToOne
-  private User user;
+  private UserEntity user;
 
 }

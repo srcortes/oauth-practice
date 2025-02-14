@@ -1,6 +1,5 @@
 package com.products.application.mappers;
 
-import com.products.application.ports.ProductListener;
 import com.products.domain.aggregate.Producto;
 
 import com.products.infrastructure.entities.ProductoEntity;

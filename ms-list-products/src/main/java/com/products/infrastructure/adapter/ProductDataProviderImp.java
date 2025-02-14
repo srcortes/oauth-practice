@@ -1,10 +1,9 @@
 package com.products.infrastructure.adapter;
 
-import com.products.domain.ports.ProductPort;
-import com.products.domain.aggregate.Producto;
+import com.products.application.ports.ProductPort;
 import com.products.infrastructure.entities.ProductoEntity;
 import com.products.infrastructure.events.ManagerObservers;
-import com.products.application.ports.ProductListener;
+import com.products.application.usescases.ProductListener;
 import com.products.infrastructure.repositories.ProductRepository;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -27,17 +26,6 @@ public class ProductDataProviderImp implements ProductPort {
     eventManager.subscribe(productListener);
     eventManager.notify(products);
     eventManager.unsubscribe(productListener);
-  }
-
-  @Override
-  public void getProductById(int id) {
-
-  }
-
-  @Override
-  public void updateProduct(Producto producto) {
-
-    //productRepository.save(producto);
   }
 
 }
